@@ -2,19 +2,19 @@
 
 import 'package:flutter/material.dart';
 
-class Location extends StatelessWidget {
-  const Location({Key? key}) : super(key: key);
-  static const String routeName = '/location';
+class filter_Screen extends StatelessWidget {
+  const filter_Screen({Key? key}) : super(key: key);
+  static const String routeName = '/filter_Screen';
   static Route route() {
     return MaterialPageRoute(
-        builder: (_) => const Location(),
+        builder: (_) => const filter_Screen(),
         settings: const RouteSettings(name: routeName));
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Location'),
+        title: const Text('filter_Screen'),
         ),
         body: ElevatedButton(onPressed: () {
           Navigator.pushNamed(context, '/');

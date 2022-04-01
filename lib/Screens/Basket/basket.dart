@@ -2,19 +2,19 @@
 
 import 'package:flutter/material.dart';
 
-class Location extends StatelessWidget {
-  const Location({Key? key}) : super(key: key);
-  static const String routeName = '/location';
+class basket_screen extends StatelessWidget {
+  const basket_screen({Key? key}) : super(key: key);
+  static const String routeName = '/basket_screen';
   static Route route() {
     return MaterialPageRoute(
-        builder: (_) => const Location(),
+        builder: (_) => const basket_screen(),
         settings: const RouteSettings(name: routeName));
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Location'),
+        title: const Text('basket_screen'),
         ),
         body: ElevatedButton(onPressed: () {
           Navigator.pushNamed(context, '/');

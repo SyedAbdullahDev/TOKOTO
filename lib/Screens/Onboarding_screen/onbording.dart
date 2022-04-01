@@ -24,7 +24,6 @@ class _OnbordingState extends State<Onbording> {
     _controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

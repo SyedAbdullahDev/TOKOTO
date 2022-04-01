@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tokoto/Screens/Account/account.dart';
+import 'package:tokoto/Screens/Home/home.dart';
 import 'package:tokoto/Screens/SignUp/signUp.dart';
 
 class Sign_In extends StatefulWidget {
@@ -169,7 +170,7 @@ class _Sign_InState extends State<Sign_In> {
                 Fluttertoast.showToast(msg: "Login Successful"),
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => const Accont_screen(),
+                    builder: (context) => const Home_Screen(),
                   ),
                 ),
               })
