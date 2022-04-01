@@ -17,7 +17,7 @@ class basket_screen extends StatelessWidget {
         title: const Text('basket_screen'),
         ),
         body: ElevatedButton(onPressed: () {
-          Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/home');
         }, child: const Text('Home')),
     );
   }

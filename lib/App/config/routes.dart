@@ -1,11 +1,10 @@
-// ignore_for_file: avoid_print, no_duplicate_case_values
+// ignore_for_file: avoid_print,
 import 'package:flutter/material.dart';
 import 'package:tokoto/Screens/Basket/basket.dart';
 import 'package:tokoto/Screens/Checkout/checkout.dart';
 import 'package:tokoto/Screens/Filter/fliter.dart';
 import 'package:tokoto/Screens/Home/home.dart';
 import 'package:tokoto/Screens/Location/location.dart';
-import 'package:tokoto/Screens/Onboarding_screen/onbording.dart';
 import 'package:tokoto/Screens/delivery/delivery.dart';
 import 'package:tokoto/Screens/restraurant/restraurant_detail.dart';
 import 'package:tokoto/Screens/restraurant/restraurant_listing.dart';
@@ -15,9 +14,7 @@ class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
     print("The route is ${settings.name}");
     switch (settings.name) {
-      case '/': //1
-        return Home_Screen.route();
-      case Home_Screen.routeName:
+      case Home_Screen.routeName://1
         return Home_Screen.route();
       case Location.routeName: //2
         return Location.route();
@@ -35,7 +32,7 @@ class AppRouter {
         return Restraurant_listing.route();
       case Voucher.routeName: //9
         return Voucher.route();
-      default:
+      default: //10
         return _errorRoute();
     }
   }

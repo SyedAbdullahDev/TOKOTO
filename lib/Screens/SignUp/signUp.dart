@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tokoto/Model/user_model.dart';
-import 'package:tokoto/Screens/Account/account.dart';
 import 'package:tokoto/Screens/SignIn/signIn.dart';
 
 class Sign_Up extends StatefulWidget {
@@ -163,7 +162,6 @@ class _Sign_UpState extends State<Sign_Up> {
         ),
       ),
     );
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -267,10 +265,6 @@ class _Sign_UpState extends State<Sign_Up> {
         .doc(user.uid)
         .set(userModel.tomap());
     Fluttertoast.showToast(msg: "Account created successfully :)");
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const Accont_screen(),
-      ),
-    );
+    Navigator.pushNamed(context, '/location');
   }
 }

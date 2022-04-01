@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Home_Screen extends StatelessWidget {
   const Home_Screen({Key? key}) : super(key: key);
-  static const String routeName = '/';
+  static const String routeName = '/home';
   static Route route() {
     return MaterialPageRoute(
         builder: (_) => const Home_Screen(),

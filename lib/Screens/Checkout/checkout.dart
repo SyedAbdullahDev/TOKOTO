@@ -17,7 +17,7 @@ class Checkout extends StatelessWidget {
         title: const Text('Checkout'),
         ),
         body: ElevatedButton(onPressed: () {
-          Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/home');
         }, child: const Text('Home')),
     );
   }

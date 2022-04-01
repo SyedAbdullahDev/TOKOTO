@@ -17,7 +17,7 @@ class Restraurant_detail extends StatelessWidget {
         title: const Text('Restraurant_detail'),
         ),
         body: ElevatedButton(onPressed: () {
-          Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/home');
         }, child: const Text('Home')),
     );
   }

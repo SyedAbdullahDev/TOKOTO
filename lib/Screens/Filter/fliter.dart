@@ -17,7 +17,7 @@ class filter_Screen extends StatelessWidget {
         title: const Text('filter_Screen'),
         ),
         body: ElevatedButton(onPressed: () {
-          Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/home');
         }, child: const Text('Home')),
     );
   }

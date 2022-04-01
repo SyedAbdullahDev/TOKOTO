@@ -19,7 +19,7 @@ class Restraurant_listing extends StatelessWidget {
       ),
       body: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/home');
           },
           child: const Text('Home')),
     );

@@ -17,7 +17,7 @@ class Voucher extends StatelessWidget {
         title: const Text('Voucher'),
         ),
         body: ElevatedButton(onPressed: () {
-          Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/home');
         }, child: const Text('Home')),
     );
   }
