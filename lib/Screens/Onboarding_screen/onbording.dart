@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tokoto/Screens/Onboarding_screen/content_model.dart';
+import 'package:tokoto/Screens/SignIn/signIn.dart';
 
 class Onbording extends StatefulWidget {
   const Onbording({Key? key}) : super(key: key);
@@ -86,12 +87,12 @@ class _OnbordingState extends State<Onbording> {
                   currentIndex == contents.length - 1 ? "Continue" : "Next"),
               onPressed: () {
                 if (currentIndex == contents.length - 1) {
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (_) => const Sign_In(),
-                  //   ),
-                  // );
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const Sign_In(),
+                    )
+                  );
                 }
                 _controller.nextPage(
                   duration: const Duration(milliseconds: 100),
