@@ -27,8 +27,8 @@ class MenuItem extends Equatable {
       price: 20.9,
     ),
     const MenuItem(
-      id: 1,
-      restraurantId: 1,
+      id: 2,
+      restraurantId: 2,
       name: 'Cold Drink',
       description: 'Awsome Cold Drinks with Ice cubes',
       price: 10.9,

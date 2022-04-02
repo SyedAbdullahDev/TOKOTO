@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:tokoto/Model/menu_item_model.dart';
 
 class Restraurant extends Equatable {

@@ -1,6 +1,8 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tokoto/controller/controller.dart';
 
 class Location extends StatelessWidget {
   Location({Key? key}) : super(key: key);
@@ -10,27 +12,35 @@ class Location extends StatelessWidget {
         builder: (_) => Location(),
         settings: const RouteSettings(name: routeName));
   }
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
+  final Control _controller = Get.put(Control());
   @override
   Widget build(BuildContext context) {
     //-------------------------city
     final cityFeild = TextFormField(
       autofocus: false,
       controller: cityController,
-      validator: (value) {
-        if (value!.isEmpty) {
+      validator: (city) {
+        if (city!.isEmpty) {
           return ("Please Enter City");
         }
         return null;
       },
-      onSaved: (value) {
-        cityController.text = value!;
+      onChanged: (city) {
+        _controller.city.value = city;
+      },
+      onSaved: (city) {
+        cityController.text = city!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.place, color: Colors.red,),
+          prefixIcon: const Icon(
+            Icons.place,
+            color: Colors.red,
+          ),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "City",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
@@ -39,23 +49,29 @@ class Location extends StatelessWidget {
     final addressfeild = TextFormField(
       autofocus: false,
       controller: addressController,
-      validator: (value) {
-        if (value!.isEmpty) {
+      validator: (address) {
+        if (address!.isEmpty) {
           return ("Please Enter Address");
         }
         return null;
       },
-      onSaved: (value) {
-        cityController.text = value!;
+      onChanged: (address) {
+        _controller.address.value = address;
+      },
+      onSaved: (address) {
+        cityController.text = address!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.place, color: Colors.red,),
+          prefixIcon: const Icon(
+            Icons.place,
+            color: Colors.red,
+          ),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Address",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
     );
-     //--------------------------------Button
+    //--------------------------------Button
     final loginbutton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
