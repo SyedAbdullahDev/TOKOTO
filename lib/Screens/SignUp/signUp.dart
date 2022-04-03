@@ -96,7 +96,7 @@ class _Sign_UpState extends State<Sign_Up> {
     );
     //--------------------------------Password
     final passwordfeild = TextFormField(
-      autofocus: true,
+      autofocus: false,
       obscureText: true,
       controller: passwordController,
       onSaved: (value) {
