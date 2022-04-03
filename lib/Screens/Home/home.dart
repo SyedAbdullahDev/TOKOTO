@@ -1,8 +1,12 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:tokoto/Model/catagory_model.dart';
+import 'package:tokoto/Model/restraurant_model.dart';
 import 'package:tokoto/Widgets/Custom/custom_home_appbar.dart';
+import 'package:tokoto/Widgets/Custom/custom_searchbar.dart';
 import 'package:tokoto/Widgets/Parts/catagory_box.dart';
+import 'package:tokoto/Widgets/Parts/promo_box.dart';
+import 'package:tokoto/Widgets/Parts/restaurant_card.dart';
 
 class Home_Screen extends StatelessWidget {
   const Home_Screen({Key? key}) : super(key: key);
@@ -35,6 +39,40 @@ class Home_Screen extends StatelessWidget {
                   },
                 ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                height: 145,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    return const Promo_box();
+                  },
+                ),
+              ),
+            ),
+            const Custom_searchbar(),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Top Rated',
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: Restraurant.restraurant.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Restraurant_Card(
+                  restraurant: Restraurant.restraurant[index],
+                );
+              },
             ),
           ],
         ),

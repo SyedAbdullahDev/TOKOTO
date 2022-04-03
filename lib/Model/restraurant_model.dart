@@ -12,7 +12,7 @@ class Restraurant extends Equatable {
   final double deliveryFee;
   final double distance;
 
-  Restraurant({
+  const Restraurant({
     required this.menuItems,
     required this.id,
     required this.imageUrl,
@@ -27,6 +27,7 @@ class Restraurant extends Equatable {
   List<Object?> get props => [
         id,
         imageUrl,
+        menuItems,
         name,
         tags,
         deliveryTime,
@@ -34,7 +35,7 @@ class Restraurant extends Equatable {
         distance,
       ];
 
-  List<Restraurant> restraurant = [
+  static List<Restraurant> restraurant = [
     Restraurant(
       menuItems: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 1)
@@ -79,7 +80,7 @@ class Restraurant extends Equatable {
           .toList(),
       id: 4,
       imageUrl:
-          'https://pide.org.pk/wp-content/uploads/webinar-restaurant-industry-of-pakistan-opportunities-and-market-dynamics.jpg',
+          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudHN8ZW58MHx8MHx8&w=1000&q=80',
       name: 'Royal Hotel',
       tags: const ['Chinese', 'Desserts', 'Salad'],
       deliveryTime: 20,
