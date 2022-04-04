@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print,
 import 'package:flutter/material.dart';
+import 'package:tokoto/Model/restraurant_model.dart';
 import 'package:tokoto/Screens/Basket/basket.dart';
 import 'package:tokoto/Screens/Checkout/checkout.dart';
 import 'package:tokoto/Screens/Filter/fliter.dart';
@@ -27,9 +28,13 @@ class AppRouter {
       case filter_Screen.routeName: //6
         return filter_Screen.route();
       case Restraurant_detail.routeName: //7
-        return Restraurant_detail.route();
+        return Restraurant_detail.route(
+          restraurant: settings.arguments as Restraurant
+        );
       case Restraurant_listing.routeName: //8
-        return Restraurant_listing.route();
+        return Restraurant_listing.route(
+          restraurants: settings.arguments as List<Restraurant>
+        );
       case Voucher.routeName: //9
         return Voucher.route();
       default: //10

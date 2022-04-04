@@ -18,7 +18,7 @@ class Restaurant_info extends StatelessWidget {
           Text(
             restraurant.name,
             style: Theme.of(context).textTheme.headline3!.copyWith(
-                  color: Colors.black,
+                  color: Colors.red,
                 ),
           ),
           const SizedBox(
@@ -40,7 +40,7 @@ class Restaurant_info extends StatelessWidget {
           Text(
             'Restaurant Information',
             style: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.black,
+                  color: Colors.red,
                 ),
           ),
           const SizedBox(

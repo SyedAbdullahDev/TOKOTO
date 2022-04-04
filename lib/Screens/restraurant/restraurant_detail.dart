@@ -1,21 +1,23 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names
+// ignore_for_file: camel_case_types, non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:flutter/material.dart';
 import 'package:tokoto/Model/restraurant_model.dart';
 import 'package:tokoto/Widgets/Parts/restaurant_info.dart';
 
 class Restraurant_detail extends StatelessWidget {
-  const Restraurant_detail({Key? key}) : super(key: key);
+  const Restraurant_detail({Key? key, required this.restraurant})
+      : super(key: key);
   static const String routeName = '/Restraurant_detail';
-  static Route route() {
+  static Route route({required Restraurant restraurant}) {
     return MaterialPageRoute(
-        builder: (_) => const Restraurant_detail(),
+        builder: (_) => Restraurant_detail(restraurant: restraurant),
         settings: const RouteSettings(name: routeName));
   }
 
+  final Restraurant restraurant;
+
   @override
   Widget build(BuildContext context) {
-    Restraurant restraurant = Restraurant.restraurant[0];
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -63,9 +65,12 @@ class Restraurant_detail extends StatelessWidget {
               ),
               Restaurant_info(restraurant: restraurant),
               ListView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: restraurant.tags.length,
                 itemBuilder: (context, index) {
-                  return _Built_Menu_items(restraurant, context, index);
+                  return _BuiltMenuItems(restraurant, context, index);
                 },
               ),
             ],
@@ -73,8 +78,78 @@ class Restraurant_detail extends StatelessWidget {
         ));
   }
 
-  Widget _Built_Menu_items(
+  Widget _BuiltMenuItems(
       Restraurant restraurant, BuildContext context, int index) {
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+          child: Text(
+            restraurant.tags[index],
+            style: Theme.of(context)
+                .textTheme
+                .headline3!
+                .copyWith(color: Colors.red),
+          ),
+        ),
+        Column(
+            children: restraurant.menuItems
+                .where(
+                    (MenuItem) => MenuItem.catagory == restraurant.tags[index])
+                .map((MenuItem) => Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                          ),
+                          child: ListTile(
+                            dense: true,
+                            contentPadding: EdgeInsets.zero,
+                            title: Text(
+                              MenuItem.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: Colors.black),
+                            ),
+                            subtitle: Text(
+                              MenuItem.description,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(color: Colors.black),
+                            ),
+                            trailing: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  '\$${MenuItem.price}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6!
+                                      .copyWith(color: Colors.black),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.add_circle,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          height: 2,
+                        ),
+                      ],
+                    ))
+                .toList())
+      ],
+    );
   }
 }
