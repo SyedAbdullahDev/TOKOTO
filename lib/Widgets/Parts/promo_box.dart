@@ -1,11 +1,11 @@
-
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:tokoto/Model/promo_card_models.dart';
 
 class Promo_box extends StatelessWidget {
-  const Promo_box({Key? key}) : super(key: key);
-
+  const Promo_box({Key? key, required this.promo}) : super(key: key);
+  final Promo promo;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -14,34 +14,70 @@ class Promo_box extends StatelessWidget {
           margin: const EdgeInsets.only(right: 8),
           width: MediaQuery.of(context).size.width - 40,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6.0),
-            color: Theme.of(context).primaryColor,
-            image: const DecorationImage(
-              image: NetworkImage('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-              fit: BoxFit.cover,
-            )
-          ),
+              borderRadius: BorderRadius.circular(6.0),
+              color: Theme.of(context).primaryColor,
+              image: DecorationImage(
+                image: NetworkImage(
+                  promo.imageurl,
+                ),
+                fit: BoxFit.cover,
+              )),
         ),
-        Container(
-          margin: const EdgeInsets.only(right: 8),
-          width: MediaQuery.of(context).size.width - 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6.0),
-            color: Theme.of(context).primaryColor,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10, left: 15, right: 130),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Free Delivery on First 3 Orders', style: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.white),),
-                const SizedBox(height: 15,),
-                Text('Place an order of \$10 or more and the delivery Fee is on us', style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white),),
-              ],
+        ClipPath(
+          clipper: Custom_promo_clipper(),
+          child: Container(
+            margin: const EdgeInsets.only(right: 8),
+            width: MediaQuery.of(context).size.width - 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6.0),
+              color: Theme.of(context).primaryColor,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, left: 15, right: 130),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    promo.title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(color: Colors.white),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    promo.description,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: Colors.white),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ],
     );
+  }
+}
+
+class Custom_promo_clipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, 0);
+    path.lineTo(0, size.height);
+    path.lineTo(225, size.height);
+    path.lineTo(275, 0);
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

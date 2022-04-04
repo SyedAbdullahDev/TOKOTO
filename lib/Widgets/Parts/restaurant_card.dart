@@ -1,5 +1,8 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:tokoto/Model/restraurant_model.dart';
+import 'package:tokoto/Widgets/Parts/restaurant_tags.dart';
 
 class Restraurant_Card extends StatelessWidget {
   const Restraurant_Card({Key? key, required this.restraurant})
@@ -60,10 +63,7 @@ class Restraurant_Card extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(
-                  '${restraurant.tags}',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
+                restaurant_Tags(restraurant: restraurant),
                 const SizedBox(
                   height: 5,
                 ),

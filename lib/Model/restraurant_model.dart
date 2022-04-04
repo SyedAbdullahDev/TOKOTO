@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, non_constant_identifier_names, avoid_types_as_parameter_names
 import 'package:equatable/equatable.dart';
 import 'package:tokoto/Model/menu_item_model.dart';
 
@@ -44,7 +44,9 @@ class Restraurant extends Equatable {
       imageUrl:
           'https://www.posist.com/restaurant-times/wp-content/uploads/2016/04/traits-successful-restaurant-business.jpg',
       name: 'Garvish Hotel',
-      tags: const ['Italian', 'Desserts', 'Ice Cream'],
+        tags: MenuItem.menuItems
+          .where((menuItem) => menuItem.restraurantId == 1)
+          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
       deliveryTime: 30,
       deliveryFee: 10.0,
       distance: 0.5,
@@ -56,7 +58,9 @@ class Restraurant extends Equatable {
       id: 2,
       imageUrl: 'https://www.businesslist.pk/img/cats/restaurants.jpg',
       name: 'Usmania Hotel',
-      tags: const ['Chinese', 'Desserts', 'Salad'],
+      tags: MenuItem.menuItems
+          .where((menuItem) => menuItem.restraurantId == 2)
+          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
       deliveryTime: 50,
       deliveryFee: 20.0,
       distance: 1.5,
@@ -69,7 +73,9 @@ class Restraurant extends Equatable {
       imageUrl:
           'https://i2.wp.com/www.itssouthasian.com/wp-content/uploads/2020/10/restaurants.jpg',
       name: 'Al Aziz Hotel',
-      tags: const ['Chinese', 'Desserts', 'Salad'],
+      tags: MenuItem.menuItems
+          .where((menuItem) => menuItem.restraurantId == 3)
+          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
       deliveryTime: 30,
       deliveryFee: 20.0,
       distance: 1.5,
@@ -82,7 +88,9 @@ class Restraurant extends Equatable {
       imageUrl:
           'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudHN8ZW58MHx8MHx8&w=1000&q=80',
       name: 'Royal Hotel',
-      tags: const ['Chinese', 'Desserts', 'Salad'],
+      tags: MenuItem.menuItems
+          .where((menuItem) => menuItem.restraurantId == 4)
+          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
       deliveryTime: 20,
       deliveryFee: 10.0,
       distance: 1.0,

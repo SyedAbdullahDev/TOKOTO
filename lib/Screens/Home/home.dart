@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:tokoto/Model/catagory_model.dart';
+import 'package:tokoto/Model/promo_card_models.dart';
 import 'package:tokoto/Model/restraurant_model.dart';
 import 'package:tokoto/Widgets/Custom/custom_home_appbar.dart';
 import 'package:tokoto/Widgets/Custom/custom_searchbar.dart';
@@ -47,9 +48,11 @@ class Home_Screen extends StatelessWidget {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 3,
+                  itemCount: Promo.promo.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return const Promo_box();
+                    return Promo_box(
+                      promo: Promo.promo[index],
+                    );
                   },
                 ),
               ),
