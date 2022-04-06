@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tokoto/Screens/Location/location.dart';
 import 'package:tokoto/Screens/Onboarding_screen/content_model.dart';
-import 'package:tokoto/Screens/SignIn/signIn.dart';
 
 class Onbording extends StatefulWidget {
   const Onbording({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _OnbordingState extends State<Onbording> {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +52,9 @@ class _OnbordingState extends State<Onbording> {
                       Text(
                         contents[i].title,
                         style: const TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red
-                        ),
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
                       ),
                       const SizedBox(height: 20),
                       Text(
@@ -89,14 +90,22 @@ class _OnbordingState extends State<Onbording> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const Sign_In(),
-                    )
+                      builder: (_) => Location(),
+                    ),
                   );
                 }
                 _controller.nextPage(
                   duration: const Duration(milliseconds: 100),
                   curve: Curves.bounceIn,
                 );
+                Fluttertoast.showToast(
+                    msg: "Move to next page",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
               },
               color: Theme.of(context).primaryColor,
               textColor: Colors.white,

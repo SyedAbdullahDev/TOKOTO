@@ -70,6 +70,7 @@ class Home_Screen extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: Restraurant.restraurant.length,
               itemBuilder: (BuildContext context, int index) {
                 return Restraurant_Card(

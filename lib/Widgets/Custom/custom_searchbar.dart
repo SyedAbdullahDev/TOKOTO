@@ -46,7 +46,9 @@ class Custom_searchbar extends StatelessWidget {
             width: 50,
             height: 50,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/filter_Screen');
+              },
               icon: const Icon(Icons.menu),
               color: Theme.of(context).primaryColor,
             ),

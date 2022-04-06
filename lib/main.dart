@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tokoto/App/config/routes.dart';
 import 'package:tokoto/App/style/theme.dart';
-import 'package:tokoto/Screens/Home/home.dart';
 import 'package:tokoto/Screens/Splash_Screen/splash_screen.dart';
 
 Future<void> main() async {
@@ -25,4 +24,4 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }
-}
+} 
