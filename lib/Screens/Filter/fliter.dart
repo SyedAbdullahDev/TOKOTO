@@ -1,8 +1,10 @@
 // ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
-import 'package:tokoto/Model/catagory_model.dart';
-import 'package:tokoto/Model/price_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tokoto/App/blocs/Filters/filters_bloc.dart';
+import 'package:tokoto/Model/restraurant_model.dart';
+import 'package:tokoto/Widgets/Parts/custom_catagory_filter.dart';
+import 'package:tokoto/Widgets/Parts/custom_price_filter.dart';
 
 class filter_Screen extends StatelessWidget {
   const filter_Screen({Key? key}) : super(key: key);
@@ -16,6 +18,66 @@ class filter_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocBuilder<FiltersBloc, FiltersState>(
+              builder: (context, state) {
+                if (state is FiltersLoading) {
+                  return const CircularProgressIndicator();
+                }
+                if (state is FiltersLoaded) {
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(),
+                      shadowColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 50,
+                      ),
+                    ),
+                    onPressed: () {
+                      var catagories = state.filters.catagoryFilters
+                          .where(
+                            (filter) => filter.value,
+                          )
+                          .map((filter) => filter.catagory.name)
+                          .toList();
+
+                      var prices = state.filters.priceFilters
+                          .where(
+                            (filter) => filter.value,
+                          )
+                          .map((filter) => filter.price.price)
+                          .toList();
+
+                      List<Restraurant> restraurants = Restraurant.restraurant
+                          .where(
+                            (restraurants) => catagories.any(
+                              (catagory) =>
+                                  restraurants.tags.contains(catagory),
+                            ),
+                          )
+                          .where(
+                            (restraurants) => prices.any(
+                              (price) =>
+                                  restraurants.priceCatagory.contains(price),
+                            ),
+                          )
+                          .toList();
+
+                      Navigator.pushNamed(context, '/Restraurant_listing', arguments: restraurants);
+                    },
+                    child: const Text('Apply'),
+                  );
+                } else {
+                  return const Text('Something went wrong');
+                }
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: const Text('filter_Screen'),
         centerTitle: true,
@@ -31,82 +93,17 @@ class filter_Screen extends StatelessWidget {
                     color: Colors.red,
                   ),
             ),
-            Custom_price_filter(price: Price.prices),
+            const Custom_price_filter(),
             Text(
               'Catagory',
               style: Theme.of(context).textTheme.headline3!.copyWith(
                     color: Colors.red,
                   ),
             ),
-            Custom_catagory_filter(catagories: Catagory.catagories)
+            const Custom_catagory_filter(),
           ],
         ),
       ),
-    );
-  }
-}
-
-class Custom_price_filter extends StatelessWidget {
-  const Custom_price_filter({Key? key, required this.price}) : super(key: key);
-  final List<Price> price;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: price
-          .map((price) => InkWell(
-                onTap: () {},
-                child: Container(
-                  margin: const EdgeInsets.only(top: 10, bottom: 10),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                  decoration: const BoxDecoration(color: Colors.white),
-                  child: Text(
-                    price.price,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ),
-              ))
-          .toList(),
-    );
-  }
-}
-
-class Custom_catagory_filter extends StatelessWidget {
-  const Custom_catagory_filter({Key? key, required this.catagories})
-      : super(key: key);
-  final List<Catagory> catagories;
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      
-      itemCount: catagories.length,
-      itemBuilder: (context, index) {
-        return Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(top: 10),
-          padding: const EdgeInsets.symmetric(horizontal: 33, vertical: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                catagories[index].name,
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              SizedBox(
-                height: 25,
-                child: Checkbox(
-                  value: false,
-                  onChanged: (bool? newValue) {
-
-                  },
-                ),
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 }

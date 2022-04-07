@@ -9,11 +9,13 @@ class Restraurant extends Equatable {
   final List<String> tags;
   final List<MenuItem> menuItems;
   final int deliveryTime;
+  final String priceCatagory;
   final double deliveryFee;
   final double distance;
 
   const Restraurant({
     required this.menuItems,
+    required this.priceCatagory,
     required this.id,
     required this.imageUrl,
     required this.name,
@@ -31,12 +33,14 @@ class Restraurant extends Equatable {
         name,
         tags,
         deliveryTime,
+        priceCatagory,
         deliveryFee,
         distance,
       ];
 
   static List<Restraurant> restraurant = [
     Restraurant(
+      priceCatagory: '\$\$\$',
       menuItems: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 1)
           .toList(),
@@ -44,14 +48,17 @@ class Restraurant extends Equatable {
       imageUrl:
           'https://www.posist.com/restaurant-times/wp-content/uploads/2016/04/traits-successful-restaurant-business.jpg',
       name: 'Garvish Hotel',
-        tags: MenuItem.menuItems
+      tags: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 1)
-          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
+          .map((MenuItem) => MenuItem.catagory)
+          .toSet()
+          .toList(),
       deliveryTime: 30,
       deliveryFee: 10.0,
       distance: 0.5,
     ),
     Restraurant(
+      priceCatagory: '\$\$',
       menuItems: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 2)
           .toList(),
@@ -60,7 +67,9 @@ class Restraurant extends Equatable {
       name: 'Usmania Hotel',
       tags: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 2)
-          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
+          .map((MenuItem) => MenuItem.catagory)
+          .toSet()
+          .toList(),
       deliveryTime: 50,
       deliveryFee: 20.0,
       distance: 1.5,
@@ -70,17 +79,21 @@ class Restraurant extends Equatable {
           .where((menuItem) => menuItem.restraurantId == 3)
           .toList(),
       id: 3,
+      priceCatagory: '\$',
       imageUrl:
           'https://i2.wp.com/www.itssouthasian.com/wp-content/uploads/2020/10/restaurants.jpg',
       name: 'Al Aziz Hotel',
       tags: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 3)
-          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
+          .map((MenuItem) => MenuItem.catagory)
+          .toSet()
+          .toList(),
       deliveryTime: 30,
       deliveryFee: 20.0,
       distance: 1.5,
     ),
     Restraurant(
+      priceCatagory: '\$\$',
       menuItems: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 4)
           .toList(),
@@ -90,7 +103,9 @@ class Restraurant extends Equatable {
       name: 'Royal Hotel',
       tags: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 4)
-          .map((MenuItem) => MenuItem.catagory).toSet().toList(),
+          .map((MenuItem) => MenuItem.catagory)
+          .toSet()
+          .toList(),
       deliveryTime: 20,
       deliveryFee: 10.0,
       distance: 1.0,

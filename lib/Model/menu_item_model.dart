@@ -83,7 +83,7 @@ class MenuItem extends Equatable {
       restraurantId: 2,
       name: 'Cup Cake',
       description: 'Awsome Cold Drinks with Ice cubes',
-      price: 15.2,
+      price: 5.2,
     ),
     const MenuItem(
       catagory: 'Drinks',
@@ -91,7 +91,7 @@ class MenuItem extends Equatable {
       restraurantId: 2,
       name: 'Mineral Water',
       description: 'Awsome Cold Drinks with Ice cubes',
-      price: 15.2,
+      price: 5.2,
     ),
     const MenuItem(
       catagory: 'Pizza',
@@ -108,6 +108,22 @@ class MenuItem extends Equatable {
       name: 'Tornado Crunch',
       description: 'Awsome Cold Drinks with Ice cubes',
       price: 15.2,
+    ),
+     const MenuItem(
+      catagory: 'Pizza',
+      id: 1,
+      restraurantId: 3,
+      name: 'Special Pizza',
+      description: 'Awsome Cold Drinks with Ice cubes',
+      price: 105.2,
+    ),
+    const MenuItem(
+      catagory: 'Salad',
+      id: 1,
+      restraurantId: 3,
+      name: 'Beans Special',
+      description: 'Awsome Cold Drinks with Ice cubes',
+      price: 111.2,
     ),
   ];
 }

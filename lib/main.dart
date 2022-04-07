@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:tokoto/App/blocs/Filters/filters_bloc.dart';
 import 'package:tokoto/App/config/routes.dart';
 import 'package:tokoto/App/style/theme.dart';
 import 'package:tokoto/Screens/Splash_Screen/splash_screen.dart';
@@ -16,12 +18,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'TOKOTO',
-      debugShowCheckedModeBanner: false,
-      theme: theme(),
-      home: const Splash_Screen(),
-      onGenerateRoute: AppRouter.onGenerateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) => FiltersBloc()
+              ..add(
+                LoadFilter(),
+              ))
+      ],
+      child: GetMaterialApp(
+        title: 'TOKOTO',
+        debugShowCheckedModeBanner: false,
+        theme: theme(),
+        home: const Splash_Screen(),
+        onGenerateRoute: AppRouter.onGenerateRoute,
+      ),
     );
   }
-} 
+}

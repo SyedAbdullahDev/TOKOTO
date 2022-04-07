@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tokoto/Screens/Location/location.dart';
 import 'package:tokoto/Screens/Onboarding_screen/content_model.dart';
+import 'package:tokoto/Screens/SignIn/signIn.dart';
 
 class Onbording extends StatefulWidget {
   const Onbording({Key? key}) : super(key: key);
@@ -90,7 +89,7 @@ class _OnbordingState extends State<Onbording> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => Location(),
+                      builder: (_) => const Sign_In(),
                     ),
                   );
                 }
@@ -98,14 +97,6 @@ class _OnbordingState extends State<Onbording> {
                   duration: const Duration(milliseconds: 100),
                   curve: Curves.bounceIn,
                 );
-                Fluttertoast.showToast(
-                    msg: "Move to next page",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
               },
               color: Theme.of(context).primaryColor,
               textColor: Colors.white,
