@@ -1,8 +1,11 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tokoto/Model/restraurant_model.dart';
 import 'package:tokoto/Widgets/Parts/restaurant_info.dart';
+
+import '../../App/blocs/Basket/basket_bloc.dart';
 
 class Restraurant_detail extends StatelessWidget {
   const Restraurant_detail({Key? key, required this.restraurant})
@@ -132,12 +135,20 @@ class Restraurant_detail extends StatelessWidget {
                                       .headline6!
                                       .copyWith(color: Colors.black),
                                 ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.add_circle,
-                                    color: Colors.black,
-                                  ),
+                                BlocBuilder<BasketBloc, BasketState>(
+                                  builder: (context, state) {
+                                    return IconButton(
+                                      onPressed: () {
+                                        context
+                                            .read<BasketBloc>()
+                                            .add(AddItem(MenuItem),);
+                                      },
+                                      icon: const Icon(
+                                        Icons.add_circle,
+                                        color: Colors.black,
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),

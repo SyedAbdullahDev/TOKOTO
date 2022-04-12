@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:tokoto/App/blocs/Basket/basket_bloc.dart';
 import 'package:tokoto/App/blocs/Filters/filters_bloc.dart';
 import 'package:tokoto/App/config/routes.dart';
 import 'package:tokoto/App/style/theme.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
             create: (context) => FiltersBloc()
               ..add(
                 LoadFilter(),
-              ))
+              ),),
+              BlocProvider(create: ((context) => BasketBloc()..add(StartBasket())),),
       ],
       child: GetMaterialApp(
         title: 'TOKOTO',

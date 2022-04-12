@@ -89,7 +89,7 @@ class _OnbordingState extends State<Onbording> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const Sign_In(),
+                      builder: (_) =>const Sign_In(),
                     ),
                   );
                 }

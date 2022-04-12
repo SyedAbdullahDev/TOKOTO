@@ -1,7 +1,9 @@
 // ignore_for_file: camel_case_types
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tokoto/Screens/SignIn/signIn.dart';
 import '../../controller/controller.dart';
 
 class Custom_home_appbar extends StatelessWidget with PreferredSizeWidget {
@@ -10,6 +12,17 @@ class Custom_home_appbar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      actions: [
+        IconButton(
+          onPressed: () {
+            loggout(context);
+          },
+          icon: const Icon(
+            Icons.login_sharp,
+            color: Colors.white,
+          ),
+        ),
+      ],
       leading: const Icon(Icons.person),
       title: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -50,6 +63,15 @@ class Custom_home_appbar extends StatelessWidget with PreferredSizeWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Future<void> loggout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const Sign_In(),
       ),
     );
   }
