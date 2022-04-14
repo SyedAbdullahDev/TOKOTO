@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tokoto/App/blocs/Filters/filters_bloc.dart';
 import 'package:tokoto/Model/restraurant_model.dart';
+import 'package:tokoto/Widgets/Custom/Drawer/drawer.dart';
 import 'package:tokoto/Widgets/Parts/custom_catagory_filter.dart';
 import 'package:tokoto/Widgets/Parts/custom_price_filter.dart';
 
@@ -18,6 +19,7 @@ class filter_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Custom_Drawer(),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

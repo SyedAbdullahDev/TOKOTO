@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tokoto/Model/catagory_model.dart';
 import 'package:tokoto/Model/promo_card_models.dart';
 import 'package:tokoto/Model/restraurant_model.dart';
+import 'package:tokoto/Widgets/Custom/Drawer/drawer.dart';
 import 'package:tokoto/Widgets/Custom/custom_home_appbar.dart';
 import 'package:tokoto/Widgets/Custom/custom_searchbar.dart';
 import 'package:tokoto/Widgets/Parts/catagory_box.dart';
@@ -22,6 +23,7 @@ class Home_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Custom_home_appbar(),
+      drawer: const Custom_Drawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [

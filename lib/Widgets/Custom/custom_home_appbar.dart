@@ -12,56 +12,51 @@ class Custom_home_appbar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actions: [
-        IconButton(
-          onPressed: () {
-            loggout(context);
-          },
-          icon: const Icon(
-            Icons.login_sharp,
-            color: Colors.white,
-          ),
-        ),
-      ],
-      leading: const Icon(Icons.person),
-      title: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Current Location',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline3!
-                  .copyWith(color: Colors.white)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(
-                () => Text(
-                  _controller.city.value.toString(),
+              Text('Current Location',
                   style: Theme.of(context)
                       .textTheme
-                      .headline5!
-                      .copyWith(color: Colors.white),
-                ),
-              ),
-              const Text(
-                ',',
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Obx(
-                () => Text(
-                  _controller.address.value.toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5!
-                      .copyWith(color: Colors.white),
-                ),
+                      .headline3!
+                      .copyWith(color: Colors.white)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Obx(
+                    () => Text(
+                      _controller.city.value.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5!
+                          .copyWith(color: Colors.white),
+                    ),
+                  ),
+                  const Text(
+                    ',',
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Obx(
+                    () => Text(
+                      _controller.address.value.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5!
+                          .copyWith(color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
+          const SizedBox(width: 5,),
+          const Icon(Icons.person, size: 35,),
         ],
       ),
     );

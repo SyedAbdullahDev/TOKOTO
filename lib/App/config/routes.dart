@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:tokoto/Model/restraurant_model.dart';
 import 'package:tokoto/Screens/Basket/basket.dart';
+import 'package:tokoto/Screens/Basket/edit_basket.dart';
 import 'package:tokoto/Screens/Checkout/checkout.dart';
 import 'package:tokoto/Screens/Filter/fliter.dart';
 import 'package:tokoto/Screens/Home/home.dart';
 import 'package:tokoto/Screens/Location/location.dart';
-import 'package:tokoto/Screens/delivery/delivery.dart';
 import 'package:tokoto/Screens/restraurant/restraurant_detail.dart';
 import 'package:tokoto/Screens/restraurant/restraurant_listing.dart';
 import 'package:tokoto/Screens/voucher/voucher.dart';
@@ -21,10 +21,10 @@ class AppRouter {
         return Location.route();
       case basket_screen.routeName: //3
         return basket_screen.route();
-      case Checkout.routeName: //4
+      case Edit_screen.routeName: //4
+        return Edit_screen.route();
+      case Checkout.routeName: //5
         return Checkout.route();
-      case Delivery_screen.routeName: //5
-        return Delivery_screen.route();
       case filter_Screen.routeName: //6
         return filter_Screen.route();
       case Restraurant_detail.routeName: //7
@@ -35,8 +35,8 @@ class AppRouter {
         return Restraurant_listing.route(
           restraurants: settings.arguments as List<Restraurant>
         );
-      case Voucher.routeName: //9
-        return Voucher.route();
+      case Voucher_screen.routeName: //9
+        return Voucher_screen.route();
       default: //10
         return _errorRoute();
     }
