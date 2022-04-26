@@ -6,7 +6,7 @@ import 'package:tokoto/App/blocs/Basket/basket_bloc.dart';
 import 'package:tokoto/App/blocs/Filters/filters_bloc.dart';
 import 'package:tokoto/App/config/routes.dart';
 import 'package:tokoto/App/style/theme.dart';
-import 'package:tokoto/Screens/Splash_Screen/splash_screen.dart';
+import 'package:tokoto/Screens/Home/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         title: 'TOKOTO',
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: const Splash_Screen(),
+        home: const Home_Screen(),
         onGenerateRoute: AppRouter.onGenerateRoute,
       ),
     );

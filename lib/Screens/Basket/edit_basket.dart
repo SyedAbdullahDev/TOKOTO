@@ -41,15 +41,6 @@ class Edit_screen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Edit Basket'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.edit,
-              color: Colors.white,
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(22.0),

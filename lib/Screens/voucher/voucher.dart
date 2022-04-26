@@ -48,7 +48,7 @@ class Voucher_screen extends StatelessWidget {
               "Enter Voucher Code",
               style: Theme.of(context)
                   .textTheme
-                  .headline3!
+                  .headline2!
                   .copyWith(color: Colors.red),
             ),
             Container(
@@ -68,6 +68,9 @@ class Voucher_screen extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
             Text(
               'Your Vouncher',
               style: Theme.of(context).textTheme.headline3!.copyWith(
@@ -75,11 +78,51 @@ class Voucher_screen extends StatelessWidget {
                   ),
             ),
             ListView.builder(
+              shrinkWrap: true,
               itemCount: Voucher.vouchers.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   width: double.infinity,
                   margin: const EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '3x',
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                              color: Colors.red,
+                            ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Text(
+                              Voucher.vouchers[index].code,
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                          ],
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Apply',
+                          style:
+                              Theme.of(context).textTheme.headline5!.copyWith(
+                                    color: Colors.red,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

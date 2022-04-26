@@ -46,7 +46,7 @@ class Restraurant extends Equatable {
           .toList(),
       id: 1,
       imageUrl:
-          'https://www.posist.com/restaurant-times/wp-content/uploads/2016/04/traits-successful-restaurant-business.jpg',
+          'https://media.istockphoto.com/photos/modern-restaurant-interior-design-picture-id1211547141?k=20&m=1211547141&s=612x612&w=0&h=KiZX3NBZVCK4MlSh4BJ8hZNSJcTIMbNSSV2yusw2NmM=',
       name: 'Garvish Hotel',
       tags: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 1)

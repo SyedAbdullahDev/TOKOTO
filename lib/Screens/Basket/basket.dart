@@ -32,7 +32,7 @@ class basket_screen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/Checkout');
               },
               child: const Text('Order'),
             ),
@@ -56,218 +56,67 @@ class basket_screen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(22.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Cutlery',
-              style: Theme.of(context).textTheme.headline3!.copyWith(
-                    color: Colors.red,
-                  ),
-            ),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Do you need cutlery?',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                  BlocBuilder<BasketBloc, BasketState>(
-                    builder: (context, state) {
-                      if (state is BasketLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.red,
-                          ),
-                        );
-                      } else if (state is BasketLoaded) {
-                        return SizedBox(
-                          width: 100,
-                          child: SwitchListTile(
-                            value: state.basket.cutlery,
-                            dense: false,
-                            onChanged: (bool? newValue) {
-                              context
-                                  .read<BasketBloc>()
-                                  .add(const ToggleSwitch());
-                            },
-                          ),
-                        );
-                      } else {
-                        return const Text('Something gone wrong');
-                      }
-                    },
-                  )
-                ],
-              ),
-            ),
-            Text(
-              'Items',
-              style: Theme.of(context).textTheme.headline3!.copyWith(
-                    color: Colors.red,
-                  ),
-            ),
-            BlocBuilder<BasketBloc, BasketState>(
-              builder: (context, state) {
-                if (state is BasketLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Cutlery',
+                style: Theme.of(context).textTheme.headline3!.copyWith(
                       color: Colors.red,
                     ),
-                  );
-                } else if (state is BasketLoaded) {
-                  return state.basket.items.isEmpty
-                      ? Container(
-                          margin: const EdgeInsets.only(top: 5),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 10),
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Text(
-                                'No Item in Basket',
-                                style: Theme.of(context).textTheme.headline6,
-                                textAlign: TextAlign.left,
-                              )
-                            ],
-                          ),
-                        )
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          itemCount: state.basket
-                              .itemQuantity(state.basket.items)
-                              .keys
-                              .length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              width: double.infinity,
-                              margin: const EdgeInsets.only(top: 5),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 5),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '${state.basket.itemQuantity(state.basket.items).entries.elementAt(index).value}x',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline6!
-                                        .copyWith(color: Colors.red),
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      '${state.basket.itemQuantity(state.basket.items).keys.elementAt(index).name}',
-                                      style:
-                                          Theme.of(context).textTheme.headline6,
-                                    ),
-                                  ),
-                                  Text(
-                                    '\$${state.basket.itemQuantity(state.basket.items).keys.elementAt(index).price}',
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                } else {
-                  return const Text('Something went wrong');
-                }
-              },
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 5),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25,
               ),
-              width: double.infinity,
-              height: 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    "assets/truck.png",
-                    height: 85,
-                    width: 90,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Delivery in 20 minutes',
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Do you need cutlery?',
                         style: Theme.of(context).textTheme.headline6,
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    BlocBuilder<BasketBloc, BasketState>(
+                      builder: (context, state) {
+                        if (state is BasketLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.red,
+                            ),
+                          );
+                        } else if (state is BasketLoaded) {
+                          return SizedBox(
+                            width: 100,
+                            child: SwitchListTile(
+                              value: state.basket.cutlery,
+                              dense: false,
+                              onChanged: (bool? newValue) {
+                                context
+                                    .read<BasketBloc>()
+                                    .add(const ToggleSwitch());
+                              },
+                            ),
+                          );
+                        } else {
+                          return const Text('Something gone wrong');
+                        }
+                      },
+                    )
+                  ],
+                ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 5),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25,
+              Text(
+                'Items',
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      color: Colors.red,
+                    ),
               ),
-              width: double.infinity,
-              height: 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Do you have any voucher?',
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Apply',
-                          style:
-                              Theme.of(context).textTheme.headline6!.copyWith(
-                                    color: Colors.red,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Image.asset(
-                    "assets/voucher.png",
-                    height: 85,
-                    width: 90,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 7),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25,
-              ),
-              width: double.infinity,
-              height: 100,
-              child: BlocBuilder<BasketBloc, BasketState>(
+              BlocBuilder<BasketBloc, BasketState>(
                 builder: (context, state) {
                   if (state is BasketLoading) {
                     return const Center(
@@ -276,65 +125,220 @@ class basket_screen extends StatelessWidget {
                       ),
                     );
                   } else if (state is BasketLoaded) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'SubTotal',
-                              style: Theme.of(context).textTheme.headline6,
+                    return state.basket.items.isEmpty
+                        ? Container(
+                            margin: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 10),
+                            width: double.infinity,
+                            child: Row(
+                              children: [
+                                Text(
+                                  'No Item in Basket',
+                                  style: Theme.of(context).textTheme.headline6,
+                                  textAlign: TextAlign.left,
+                                )
+                              ],
                             ),
-                            Text(
-                              '\$${state.basket.subtotalString}',
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Delivery Fee',
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                            Text(
-                              '\$10',
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Total',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5!
-                                  .copyWith(
-                                    color: Colors.red,
-                                  ),
-                            ),
-                            Text(
-                              '\$${state.basket.totalString}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5!
-                                  .copyWith(color: Colors.red),
-                            ),
-                          ],
-                        ),
-                      ],
-                    );
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            itemCount: state.basket
+                                .itemQuantity(state.basket.items)
+                                .keys
+                                .length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                width: double.infinity,
+                                margin: const EdgeInsets.only(top: 5),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 5),
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      '${state.basket.itemQuantity(state.basket.items).entries.elementAt(index).value}x',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6!
+                                          .copyWith(color: Colors.red),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        '${state.basket.itemQuantity(state.basket.items).keys.elementAt(index).name}',
+                                        style:
+                                            Theme.of(context).textTheme.headline6,
+                                      ),
+                                    ),
+                                    Text(
+                                      '\$${state.basket.itemQuantity(state.basket.items).keys.elementAt(index).price}',
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
                   } else {
-                    return const Text('Something Wrong');
+                    return const Text('Something went wrong');
                   }
                 },
               ),
-            ),
-          ],
+              Container(
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                width: double.infinity,
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      "assets/truck.png",
+                      height: 85,
+                      width: 90,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'Delivery in 20 minutes',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                width: double.infinity,
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'Do you have any voucher?',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/Voucher');
+                          },
+                          child: Text(
+                            'Apply',
+                            style:
+                                Theme.of(context).textTheme.headline6!.copyWith(
+                                      color: Colors.red,
+                                    ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      "assets/voucher.png",
+                      height: 85,
+                      width: 90,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 7),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                width: double.infinity,
+                height: 100,
+                child: BlocBuilder<BasketBloc, BasketState>(
+                  builder: (context, state) {
+                    if (state is BasketLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.red,
+                        ),
+                      );
+                    } else if (state is BasketLoaded) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'SubTotal',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              Text(
+                                '\$${state.basket.subtotalString}',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Delivery Fee',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              Text(
+                                '\$10',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5!
+                                    .copyWith(
+                                      color: Colors.red,
+                                    ),
+                              ),
+                              Text(
+                                '\$${state.basket.totalString}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5!
+                                    .copyWith(color: Colors.red),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    } else {
+                      return const Text('Something Wrong');
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

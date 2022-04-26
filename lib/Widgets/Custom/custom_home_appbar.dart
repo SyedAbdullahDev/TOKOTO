@@ -12,12 +12,15 @@ class Custom_home_appbar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: false,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [ 
+          const Icon(Icons.person, size: 32,),
+          const SizedBox(width: 5,),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Current Location',
                   style: Theme.of(context)
@@ -25,7 +28,7 @@ class Custom_home_appbar extends StatelessWidget with PreferredSizeWidget {
                       .headline3!
                       .copyWith(color: Colors.white)),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Obx(
                     () => Text(
@@ -55,8 +58,6 @@ class Custom_home_appbar extends StatelessWidget with PreferredSizeWidget {
               ),
             ],
           ),
-          const SizedBox(width: 5,),
-          const Icon(Icons.person, size: 35,),
         ],
       ),
     );
