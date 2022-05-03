@@ -58,6 +58,24 @@ class Restraurant extends Equatable {
       distance: 0.5,
     ),
     Restraurant(
+      priceCatagory: '\$\$\$',
+      menuItems: MenuItem.menuItems
+          .where((menuItem) => menuItem.restraurantId == 1)
+          .toList(),
+      id: 1,
+      imageUrl:
+          'https://media.istockphoto.com/photos/modern-restaurant-interior-design-picture-id1211547141?k=20&m=1211547141&s=612x612&w=0&h=KiZX3NBZVCK4MlSh4BJ8hZNSJcTIMbNSSV2yusw2NmM=',
+      name: 'Happy Hotel',
+      tags: MenuItem.menuItems
+          .where((menuItem) => menuItem.restraurantId == 1)
+          .map((MenuItem) => MenuItem.catagory)
+          .toSet()
+          .toList(),
+      deliveryTime: 10,
+      deliveryFee: 10.0,
+      distance: 1.5,
+    ),
+    Restraurant(
       priceCatagory: '\$\$',
       menuItems: MenuItem.menuItems
           .where((menuItem) => menuItem.restraurantId == 2)

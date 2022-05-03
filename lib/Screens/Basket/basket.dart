@@ -40,7 +40,7 @@ class basket_screen extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        title: const Text('basket_screen'),
+        title:  const Text('basket_screen'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -55,7 +55,7 @@ class basket_screen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(22.0),
+        padding:  const EdgeInsets.all(22.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
